@@ -34,8 +34,8 @@ namespace LaunchLibraryNET.Models
         public string logo_url { get; set; }
         public object image_url { get; set; }
         public object nation_url { get; set; }
-        public IList<object> launcher_list { get; set; }
-        public IList<object> spacecraft_list { get; set; }
+        public List<object> launcher_list { get; set; }
+        public List<object> spacecraft_list { get; set; }
     }
 
 }

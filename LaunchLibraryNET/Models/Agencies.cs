@@ -27,7 +27,7 @@ namespace LaunchLibraryNET.Models
         public int count { get; set; }
         public string next { get; set; }
         public object previous { get; set; }
-        public IList<Result> results { get; set; }
+        public List<Result> results { get; set; }
     }
 
 

@@ -25,14 +25,14 @@ namespace LaunchLibraryNET
         }
 
         public async Task<Agencies> GetAgencies(
-            string featured=""
-            ,string agency_type="",
+            string featured="",
+            string agency_type="",
             string country_code="",
             string search="",
             string limit="",
             string offset="")
         {
-            var url = BaseUrl + "/agency";
+            var url = BaseUrl + "/agencies";
             var response = await url
                 .SetQueryParams(new {
                     featured = featured,
@@ -41,19 +41,20 @@ namespace LaunchLibraryNET
                     search = search,
                     limit = limit,
                     offset = offset})
-                .GetJsonAsync();
-            var agencies = JsonConvert.DeserializeObject<Agencies>(response);
+                .GetJsonAsync<Agencies>();
 
-            return agencies;
+           // var agencies = JsonConvert.DeserializeObject<Agencies>(response.Content.ToString());
+
+            return response;
         }
 
         public async Task<Agency> GetAgencyById(string id)
         {
-            var url = BaseUrl + "/agency/" + id;
-            var response = await url.GetJsonAsync();
-            var agency = JsonConvert.DeserializeObject<Agency>(response);
+            var url = BaseUrl + "/agencies/" + id;
+            var response = await url.GetJsonAsync<Agency>();
+            //var agency = JsonConvert.DeserializeObject<Agency>(response.Content.ToString());
 
-            return agency;
+            return response;
         }
     }
 }
