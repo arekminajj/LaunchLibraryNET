@@ -7,7 +7,7 @@ namespace LaunchLibraryNET.Models
 
     public class Astronaut
     {
-            public long Id { get; set; }
+            public int Id { get; set; }
             public Uri Url { get; set; }
             public string Name { get; set; }
             public AstronautStatus Status { get; set; }
@@ -122,7 +122,7 @@ namespace LaunchLibraryNET.Models
             public string Name { get; set; }
             public string Family { get; set; }
             public string FullName { get; set; }
-            public long Variant { get; set; }
+            public string Variant { get; set; }
         }
 
         public class AstronautStatus

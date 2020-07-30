@@ -33,7 +33,7 @@ namespace LaunchLibraryNET
             string offset="")
         {
             var url = BaseUrl + "/agencies";
-            var response = await url
+            var agencies = await url
                 .SetQueryParams(new {
                     featured = featured,
                     agency_type = agency_type,
@@ -43,18 +43,73 @@ namespace LaunchLibraryNET
                     offset = offset})
                 .GetJsonAsync<Agencies>();
 
-           // var agencies = JsonConvert.DeserializeObject<Agencies>(response.Content.ToString());
-
-            return response;
+            return agencies;
         }
 
         public async Task<Agency> GetAgencyById(string id)
         {
             var url = BaseUrl + "/agencies/" + id;
-            var response = await url.GetJsonAsync<Agency>();
-            //var agency = JsonConvert.DeserializeObject<Agency>(response.Content.ToString());
+            var agency = await url.GetJsonAsync<Agency>();
 
-            return response;
+            return agency;
+        }
+
+        public async Task<Astronauts> GetAstronauts(
+            string agency__name = "",
+            string date_of_death = "",
+            string name = "",
+            string nationality = "",
+            string date_of_birth = "",
+            string agency__abbrev = "",
+            string status = "",
+            string date_of_birth__gt = "",
+            string date_of_birth__lt = "",
+            string date_of_birth__gte = "",
+            string date_of_birth__lte = "",
+            string date_of_death__gt = "",
+            string date_of_death__lt = "",
+            string date_of_death__gte = "",
+            string date_of_death__lte = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = "")
+        {
+            var url = BaseUrl + "/astronaut";
+            var astronauts = await url
+                .SetQueryParams(new
+                {
+                    agency__name = agency__name,
+                    date_of_birth = date_of_birth,
+                    name = name,
+                    nationality = nationality,
+                    date_of_death = date_of_death,
+                    agency__abbrev = agency__abbrev,
+                    status = status,
+                    date_of_birth__gt = date_of_birth__gt,
+                    date_of_birth__lt = date_of_birth__lt,
+                    date_of_birth__gte = date_of_birth__gte,
+                    date_of_birth__lte = date_of_birth__lte,
+                    date_of_death__gt = date_of_death__gt,
+                    date_of_death__lt = date_of_death__lt,
+                    date_of_death__gte = date_of_death__gte,
+                    date_of_death__lte = date_of_death__lte,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<Astronauts>();
+
+            return astronauts;
+        }
+
+        public async Task<Astronaut> GetAstronautById(string id)
+        {
+            var url = BaseUrl + "/astronaut/" + id;
+            var astronaut = await url.GetJsonAsync<Astronaut>();
+
+            return astronaut;
         }
     }
 }
