@@ -187,5 +187,38 @@ namespace LaunchLibraryNET
 
             return spacecraftConfig;
         }
+
+        public async Task<Events> GetEvents(
+            string slug = "",
+            string id = "",
+            string type = "",
+            string search = "",
+            string limit = "",
+            string offset = ""
+           )
+        {
+            var url = BaseUrl + "/event";
+            var events = await url
+                .SetQueryParams(new
+                {
+                    slug = slug,
+                    id = id,
+                    type = type,
+                    search = search,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<Events>();
+
+            return events;
+        }
+
+        public async Task<Event> GetEventById(string id)
+        {
+            var url = BaseUrl + "/event/" + id;
+            var _event = await url.GetJsonAsync<Event>();
+
+            return _event;
+        }
     }
 }

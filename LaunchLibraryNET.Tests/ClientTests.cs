@@ -89,5 +89,23 @@ namespace LaunchLibraryNET.Tests
 
             Assert.Equal("CST-100 Starliner", name);
         }
+
+        [Fact]
+        public void EventIdShouldMatchItsName()
+        {
+            var astroEvent = client.GetEvents(search: "70th");
+            var id = astroEvent.Result.Results[0].Id;
+
+            Assert.Equal(60, id);
+        }
+
+        [Fact]
+        public void EventIdShouldEqualItsId()
+        {
+            var astroEvent = client.GetEventById("60");
+            var id = astroEvent.Result.Id;
+
+            Assert.Equal(60, id);
+        }
     }
 }
