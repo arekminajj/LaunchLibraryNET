@@ -50,8 +50,44 @@ namespace LaunchLibraryNET.Tests
         {
             var astronaut = client.GetAstronautById("136");
             var name = astronaut.Result.Name;
+
             Assert.Equal("Mirosław Hermaszewski", name);
         }
 
+        [Fact]
+        public void SearchedLauncherConfigNameShouldEqualItsName()
+        {
+            var launcherConfig = client.GetLauncherConfigs(search: "Angara-1.2pp");
+            var name = launcherConfig.Result.Results[0].Name;
+
+            Assert.Equal("Angara-1.2pp", name);
+        }
+
+        [Fact]
+        public void LauncherConfigsIdShouldMatchItsName()
+        {
+            var launcherConfig = client.GetLauncherConfigById("53");
+            var name = launcherConfig.Result.Name;
+
+            Assert.Equal("Angara-1.2pp", name);
+        }
+
+        [Fact]
+        public void SearchedSpacecraftConfigsNameShouldMatchId()
+        {
+            var searchedSpacecraftConfig = client.GetSpacecraftConfigs(search: "cst-100");
+            var id = searchedSpacecraftConfig.Result.Results[0].Id;
+
+            Assert.Equal(9,id);
+        }
+
+        [Fact]
+        public void SpacecraftConfigsNameShouldEqualItsName()
+        {
+            var spacecraftConfig = client.GetSpacecraftConfigById("9");
+            var name = spacecraftConfig.Result.Name;
+
+            Assert.Equal("CST-100 Starliner", name);
+        }
     }
 }

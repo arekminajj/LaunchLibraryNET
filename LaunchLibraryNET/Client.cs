@@ -21,7 +21,7 @@ namespace LaunchLibraryNET
 
         public Client()
         {
-            
+            _apiKey = "";
         }
 
         public async Task<Agencies> GetAgencies(
@@ -110,6 +110,82 @@ namespace LaunchLibraryNET
             var astronaut = await url.GetJsonAsync<Astronaut>();
 
             return astronaut;
+        }
+
+        public async Task<LauncherConfigs> GetLauncherConfigs(
+            string family = "",
+            string name = "",
+            string manufacturer = "",
+            string full_name = "",
+            string active = "",
+            string reusable = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = "")
+        {
+            var url = BaseUrl + "/config/launcher";
+            var launcherConfigs = await url
+                .SetQueryParams(new
+                {
+                    family = family,
+                    name = name,
+                    manufacturer = manufacturer,
+                    full_name = full_name,
+                    active = active,
+                    reusable = reusable,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<LauncherConfigs>();
+
+            return launcherConfigs;
+        }
+
+        public async Task<LauncherConfig> GetLauncherConfigById(string id)
+        {
+            var url = BaseUrl + "/config/launcher/" + id;
+            var launcherConfig = await url.GetJsonAsync<LauncherConfig>();
+
+            return launcherConfig;
+        }
+
+        public async Task<SpacecraftConfigs> GetSpacecraftConfigs(
+            string name = "",
+            string manufacturer = "",
+            string in_use = "",
+            string human_rated = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = "")
+        {
+            var url = BaseUrl + "/config/spacecraft";
+            var spacecraftConfigs = await url
+                .SetQueryParams(new
+                {
+                    name = name,
+                    manufacturer = manufacturer,
+                    in_use = in_use,
+                    human_rated = human_rated,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<SpacecraftConfigs>();
+
+            return spacecraftConfigs;
+        }
+
+        public async Task<SpacecraftConfig> GetSpacecraftConfigById(string id)
+        {
+            var url = BaseUrl + "/config/spacecraft/" + id;
+            var spacecraftConfig = await url.GetJsonAsync<SpacecraftConfig>();
+
+            return spacecraftConfig;
         }
     }
 }

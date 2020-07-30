@@ -6,7 +6,7 @@ namespace LaunchLibraryNET.Models
 {
     public class SpacecraftConfig
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
         public string Name { get; set; }
         public SpacecraftConfigType Type { get; set; }
