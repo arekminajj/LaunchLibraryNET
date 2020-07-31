@@ -107,5 +107,23 @@ namespace LaunchLibraryNET.Tests
 
             Assert.Equal(60, id);
         }
+
+        [Fact]
+        public void SearchedDockingEventIdShouldMatchItsUrl()
+        {
+            var dockingEvents = client.GetDockingEvents(flight_vehicle__id: "220");
+            var launchUrl = dockingEvents.Result.Results[0].Url;
+
+            Assert.Equal("https://lldev.thespacedevs.com/2.0.0/docking_event/100/", launchUrl.ToString());
+        }
+
+        [Fact]
+        public void DockingEventIdShouldEqualItsId()
+        {
+            var dockingEvent = client.GetDockingEventById("100");
+            var id = dockingEvent.Result.Id;
+
+            Assert.Equal(100, id);
+        }
     }
 }

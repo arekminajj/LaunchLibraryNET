@@ -14,9 +14,9 @@ namespace LaunchLibraryNET.Models
 
     public class DockingEventsResult
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
-        public Guid LaunchId { get; set; }
+        public string LaunchId { get; set; }
         public DateTimeOffset Docking { get; set; }
         public DateTimeOffset Departure { get; set; }
         public DockingEventsFlightVehicle FlightVehicle { get; set; }

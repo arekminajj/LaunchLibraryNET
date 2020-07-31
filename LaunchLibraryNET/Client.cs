@@ -220,5 +220,48 @@ namespace LaunchLibraryNET
 
             return _event;
         }
+
+        public async Task<DockingEvents> GetDockingEvents(
+            string space_station__id = "",
+            string docking_location__id = "",
+            string flight_vehicle__id = "",
+            string docking__gt = "",
+            string docking__lt = "",
+            string docking__gte = "",
+            string docking__lte = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = ""
+        )
+        {
+            var url = BaseUrl + "/docking_event";
+            var dockingEvents = await url
+                .SetQueryParams(new
+                {
+                    space_station__id = space_station__id,
+                    idocking_location__idd = docking_location__id,
+                    flight_vehicle__id = flight_vehicle__id,
+                    docking__gt = docking__gt,
+                    docking__lt = docking__lt,
+                    docking__gte = docking__gte,
+                    docking__lte = docking__lte,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<DockingEvents>();
+
+            return dockingEvents;
+        }
+
+        public async Task<DockingEvent> GetDockingEventById(string id)
+        {
+            var url = BaseUrl + "/docking_event/" + id;
+            var dockingEvent = await url.GetJsonAsync<DockingEvent>();
+
+            return dockingEvent;
+        }
     }
 }

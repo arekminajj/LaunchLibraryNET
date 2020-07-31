@@ -6,7 +6,7 @@ namespace LaunchLibraryNET.Models
 {
     public class DockingEvent
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
         public Guid LaunchId { get; set; }
         public DateTimeOffset Docking { get; set; }
@@ -18,7 +18,7 @@ namespace LaunchLibraryNET.Models
 
     public class DockingEventDockingLocation
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 
