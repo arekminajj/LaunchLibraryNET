@@ -14,7 +14,7 @@ namespace LaunchLibraryNET.Models
 
     public class ExpeditionsResult
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
         public string Name { get; set; }
         public DateTimeOffset Start { get; set; }

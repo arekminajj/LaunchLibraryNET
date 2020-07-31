@@ -6,7 +6,7 @@ namespace LaunchLibraryNET.Models
 {
     public class Expedition
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
         public string Name { get; set; }
         public DateTimeOffset Start { get; set; }
@@ -17,7 +17,7 @@ namespace LaunchLibraryNET.Models
 
     public class ExpeditionCrew
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Role { get; set; }
         public ExpeditionAstronaut Astronaut { get; set; }
     }

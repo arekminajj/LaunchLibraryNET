@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Threading;
+using Xunit;
 
 namespace LaunchLibraryNET.Tests
 {
@@ -124,6 +125,25 @@ namespace LaunchLibraryNET.Tests
             var id = dockingEvent.Result.Id;
 
             Assert.Equal(100, id);
+        }
+
+        [Fact]
+        public void ExpeditionOneShouldMatchItsId()
+        {
+            var expeditions = client.GetExpeditions(search: "expedition");
+            var id = expeditions.Result.Results[0].Id;
+
+            Assert.Equal(35, id);
+        }
+
+        [Fact]
+        public void ExpeditionsNameShouldEqualItsName()
+        {
+            var expedition = client.GetExpeditionById("35");
+            var name = expedition.Result.Name;
+
+            Assert.Equal("Expedition 1", name);
+
         }
     }
 }

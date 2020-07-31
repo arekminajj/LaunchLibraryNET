@@ -263,5 +263,58 @@ namespace LaunchLibraryNET
 
             return dockingEvent;
         }
+
+        public async Task<Expeditions> GetExpeditions(
+            string name = "",
+            string dockincrew__astronautg_location__id = "",
+            string crew__astronaut__agency = "",
+            string space_station = "",
+            string start__gt = "",
+            string start__lt = "",
+            string start__gte = "",
+            string start__lte = "",
+            string end__gt = "",
+            string end__lt = "",
+            string end__gte = "",
+            string end__lte = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = ""
+        )
+        {
+            var url = BaseUrl + "/expedition";
+            var expeditions = await url
+                .SetQueryParams(new
+                {
+                    name = name,
+                    dockincrew__astronautg_location__id = dockincrew__astronautg_location__id,
+                    start__lt = start__lt,
+                    crew__astronaut__agency = crew__astronaut__agency,
+                    space_station = space_station,
+                    start__gt = start__gt,
+                    start__gte = start__gte,
+                    start__lte = start__lte,
+                    end__gt = end__gt,
+                    end__ltit = end__lt,
+                    end__gte = end__gte,
+                    end__lte = end__lte,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<Expeditions>();
+
+            return expeditions;
+        }
+
+        public async Task<Expedition> GetExpeditionById(string id)
+        {
+            var url = BaseUrl + "/expedition/" + id;
+            var expedition = await url.GetJsonAsync<Expedition>();
+
+            return expedition;
+        }
     }
 }
