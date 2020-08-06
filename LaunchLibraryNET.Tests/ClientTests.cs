@@ -143,7 +143,32 @@ namespace LaunchLibraryNET.Tests
             var name = expedition.Result.Name;
 
             Assert.Equal("Expedition 1", name);
+        }
 
+        [Fact]
+        public void LaunchQueryIdShouldMatchItsId()
+        {
+            var launch = client.GetLaunchById("1917999c-4d64-41a7-8a7b-9202c54ca2ef");
+            var id = launch.Result.Id;
+
+            Assert.Equal("1917999c-4d64-41a7-8a7b-9202c54ca2ef", id.ToString());
+        }
+
+        [Fact]
+        public void LaunchSlugShouldEqualItsLaunchId()
+        {
+            var launch = client.GetLaunches(slug: "atlas-lv-3a-samos-2");
+            var id = launch.Result.Results[0].Id;
+
+            Assert.Equal("9279744e-46b2-4eca-adea-f1379672ec81", id.ToString());
+        }
+
+        [Fact]
+        public void FirstUpcomingLaunchIdShouldNotBeNull()
+        {
+            var launchId = client.GetUpcomingLaunches().Result.Results[0].Id;
+
+            Assert.NotNull(launchId.ToString());
         }
     }
 }

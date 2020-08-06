@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Flurl;
 using LaunchLibraryNET.Models;
 using Flurl.Http;
-using Newtonsoft.Json;
 
 namespace LaunchLibraryNET
 {
@@ -315,6 +311,132 @@ namespace LaunchLibraryNET
             var expedition = await url.GetJsonAsync<Expedition>();
 
             return expedition;
+        }
+
+        public async Task<Launches> GetLaunches (
+            string name = "",
+            string slug = "",
+            string rocket__configuration__name = "",
+            string rocket__configuration__id = "",
+            string status = "",
+            string launch_library_id = "",
+            string rocket__spacecraftflight__spacecraft__name = "",
+            string rocket__spacecraftflight__spacecraft__name__icontains = "",
+            string rocket__spacecraftflight__spacecraft__id = "",
+            string rocket__configuration__manufacturer__name = "",
+            string rocket__configuration__manufacturer__name__icontains = "",
+            string rocket__configuration__full_name = "",
+            string rocket__configuration__full_name__icontains = "",
+            string mission__orbit__name = "",
+            string mission__orbit__name__icontains = "",
+            string net__gt = "",
+            string net__lt = "",
+            string net__gte = "",
+            string net__lte = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = ""
+        )
+        {
+            var url = BaseUrl + "/launch";
+            var launches = await url
+                .SetQueryParams(new
+                {
+                    name = name,
+                    slug = slug,
+                    rocket__configuration__name = rocket__configuration__name,
+                    rocket__configuration__id = rocket__configuration__id,
+                    status = status,
+                    launch_library_id = launch_library_id,
+                    rocket__spacecraftflight__spacecraft__name = rocket__spacecraftflight__spacecraft__name,
+                    rocket__spacecraftflight__spacecraft__name__icontains = rocket__spacecraftflight__spacecraft__name__icontains,
+                    rocket__spacecraftflight__spacecraft__id = rocket__spacecraftflight__spacecraft__id,
+                    rocket__configuration__manufacturer__name = rocket__configuration__manufacturer__name,
+                    rocket__configuration__manufacturer__name__icontains = rocket__configuration__manufacturer__name__icontains,
+                    rocket__configuration__full_name = rocket__configuration__full_name,
+                    rocket__configuration__full_name__icontains = rocket__configuration__full_name__icontains,
+                    mission__orbit__name = mission__orbit__name,
+                    mission__orbit__name__icontains = mission__orbit__name__icontains,
+                    net__gt = net__gt,
+                    net__lt = net__lt,
+                    net__gte = net__gte,
+                    net__lte = net__lte,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<Launches>();
+
+            return launches;
+        }
+
+        public async Task<UpcomingLaunches> GetUpcomingLaunches(
+            string name = "",
+            string slug = "",
+            string rocket__configuration__name = "",
+            string rocket__configuration__id = "",
+            string status = "",
+            string launch_library_id = "",
+            string rocket__spacecraftflight__spacecraft__name = "",
+            string rocket__spacecraftflight__spacecraft__name__icontains = "",
+            string rocket__spacecraftflight__spacecraft__id = "",
+            string rocket__configuration__manufacturer__name = "",
+            string rocket__configuration__manufacturer__name__icontains = "",
+            string rocket__configuration__full_name = "",
+            string rocket__configuration__full_name__icontains = "",
+            string mission__orbit__name = "",
+            string mission__orbit__name__icontains = "",
+            string net__gt = "",
+            string net__lt = "",
+            string net__gte = "",
+            string net__lte = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = ""
+        )
+        {
+            var url = BaseUrl + "/launch/upcoming";
+            var upcomingLaunches = await url
+                .SetQueryParams(new
+                {
+                    name = name,
+                    slug = slug,
+                    rocket__configuration__name = rocket__configuration__name,
+                    rocket__configuration__id = rocket__configuration__id,
+                    status = status,
+                    launch_library_id = launch_library_id,
+                    rocket__spacecraftflight__spacecraft__name = rocket__spacecraftflight__spacecraft__name,
+                    rocket__spacecraftflight__spacecraft__name__icontains = rocket__spacecraftflight__spacecraft__name__icontains,
+                    rocket__spacecraftflight__spacecraft__id = rocket__spacecraftflight__spacecraft__id,
+                    rocket__configuration__manufacturer__name = rocket__configuration__manufacturer__name,
+                    rocket__configuration__manufacturer__name__icontains = rocket__configuration__manufacturer__name__icontains,
+                    rocket__configuration__full_name = rocket__configuration__full_name,
+                    rocket__configuration__full_name__icontains = rocket__configuration__full_name__icontains,
+                    mission__orbit__name = mission__orbit__name,
+                    mission__orbit__name__icontains = mission__orbit__name__icontains,
+                    net__gt = net__gt,
+                    net__lt = net__lt,
+                    net__gte = net__gte,
+                    net__lte = net__lte,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<UpcomingLaunches>();
+
+            return upcomingLaunches;
+        }
+
+        public async Task<Launch> GetLaunchById(string id)
+        {
+            var url = BaseUrl + "/launch/" + id;
+            var launch = await url.GetJsonAsync<Launch>();
+
+            return launch;
         }
     }
 }
