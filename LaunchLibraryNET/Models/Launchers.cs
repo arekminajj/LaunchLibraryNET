@@ -14,10 +14,10 @@ namespace LaunchLibraryNET.Models
 
     public class LaunchersResult
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Uri Url { get; set; }
         public bool FlightProven { get; set; }
-        public string SerialNumber { get; set; }
+        public string serial_number { get; set; }
         public string Status { get; set; }
         public string Details { get; set; }
         public LaunchersLauncherConfig LauncherConfig { get; set; }

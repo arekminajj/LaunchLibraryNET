@@ -438,5 +438,44 @@ namespace LaunchLibraryNET
 
             return launch;
         }
+
+        public async Task<Launchers> GetLaunchers(
+            string id = "",
+            string serial_number = "",
+            string flight_proven = "",
+            string launcher_config = "",
+            string launcher_config__manufacturer = "",
+            string search = "",
+            string ordering = "",
+            string limit = "",
+            string offset = ""
+        )
+        {
+            var url = BaseUrl + "/launcher";
+            var launchers = await url
+                .SetQueryParams(new
+                {
+                    id = id,
+                    serial_number = serial_number,
+                    flight_proven = flight_proven,
+                    launcher_config = launcher_config,
+                    launcher_config__manufacturer = launcher_config__manufacturer,
+                    search = search,
+                    ordering = ordering,
+                    limit = limit,
+                    offset = offset
+                })
+                .GetJsonAsync<Launchers>();
+
+            return launchers;
+        }
+
+        public async Task<Launcher> GetLauncherById(string id)
+        {
+            var url = BaseUrl + "/launcher/" + id;
+            var launcher = await url.GetJsonAsync<Launcher>();
+
+            return launcher;
+        }
     }
 }

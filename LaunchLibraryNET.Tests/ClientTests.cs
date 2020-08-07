@@ -170,5 +170,23 @@ namespace LaunchLibraryNET.Tests
 
             Assert.NotNull(launchId.ToString());
         }
+
+        [Fact]
+        public void SearchedLaunchersSerialNumberShouldEqualItsSerialNUmber()
+        {
+            var launcher = client.GetLaunchers(serial_number: "B0003");
+            var serialNumber = launcher.Result.Results[0].serial_number;
+
+            Assert.Equal("B0003", serialNumber);
+        }
+
+        [Fact]
+        public void LauncherIdShouldEqualItsId()
+        {
+            var launcher = client.GetLauncherById("8");
+            var id = launcher.Result.Id;
+
+            Assert.Equal("8", id.ToString());
+        }
     }
 }
